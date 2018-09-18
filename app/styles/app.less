@@ -1,0 +1,34 @@
+@window-background: #1f1f1f;
+@content-top-margin: 0px;
+@font-color: #d3dae3;
+@font-link-color: #bbb;
+
+html {
+  -webkit-user-select: none;
+  -webkit-user-drag: none;
+  cursor: default;
+  color: @font-color;
+  font-family: Sans;
+}
+
+a {
+  color: @font-link-color;
+}
+
+input, textarea, select, button, img {
+  -webkit-user-drag: none;
+}
+
+.draggable {
+  -webkit-app-region: drag;
+}
+
+.selectable {
+  -webkit-user-select: auto;
+  cursor: auto;
+}
+
+body {
+  background-color: @window-background;
+  margin: @content-top-margin;
+}
