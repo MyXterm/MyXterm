@@ -1,11 +1,20 @@
-/**
- * Created by eatong on 17-3-14.
- */
 const electron = require('electron');
 const {app, BrowserWindow} = require('electron');
 const path = require('path');
 const url = require('url');
 const nodeEnv = process.env.NODE_ENV;
+
+// for dialog box access from renderer process
+const { dialog } = require('electron');
+
+var force_quit = false;
+
+const dialogOptions = {
+  type: 'info',
+  title: 'Information',
+  message: "This is an information dialog. Isn't it nice?",
+  buttons: ['Yes', 'No']
+};
 
 let win;
 
@@ -19,6 +28,7 @@ app.on('ready', () => {
 });
 
 app.on('window-all-closed', () => {
+  console.log("app quit");
   if (process.platform !== 'darwin') {
     app.quit()
   }
@@ -31,13 +41,28 @@ app.on('activate', () => {
   }
 });
 
+function dialogPromise() {
+  return new Promise(function(resolve, reject){
+
+  });
+}
+
+
 function createWindow() {
   //const {width, height} = electron.screen.getPrimaryDisplay().workAreaSize;
    //win = new BrowserWindow({width, height});
    win = new BrowserWindow({width: 1366, height: 768, show: false});
 
+   // Close box
+  win.on("close", (e) => {
+    var result = dialog.showMessageBox(dialogOptions);
+    if (result == 1)
+      e.preventDefault();
+  });
+
   if (nodeEnv === 'development') {
     //delay 1000ms to wait for webpack-dev-server start
+
     setTimeout(function(){
 
       win.loadURL(url.format({
