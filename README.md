@@ -1,3 +1,7 @@
+# This project is not completed yet. 
+
+ETA: End of 2018 (hopefully, Insha Allah) ;)
+
 # electron-mobx
 Maybe this is the most lightweight starter for `electron` & `MobX`.
 
