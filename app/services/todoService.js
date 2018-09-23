@@ -2,7 +2,8 @@
  * Created by eatong on 17-3-21.
  */
 const todoList = [
-  {id: 0, title: 'aaaaaaa', complete: false}
+  {id: 0, title: 'aaaaaaa', complete: false},
+  {id: 1, title: 'bbbbbbb', complete: true}
 ];
 
 

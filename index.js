@@ -32,19 +32,27 @@ app.on('activate', () => {
 });
 
 function createWindow() {
-  const {width, height} = electron.screen.getPrimaryDisplay().workAreaSize;
-   win = new BrowserWindow({width, height});
+  //const {width, height} = electron.screen.getPrimaryDisplay().workAreaSize;
+   //win = new BrowserWindow({width, height});
+   win = new BrowserWindow({width: 1366, height: 768, show: false});
 
   if (nodeEnv === 'development') {
     //delay 1000ms to wait for webpack-dev-server start
     setTimeout(function(){
+
       win.loadURL(url.format({
         pathname: "localhost:3000",
         protocol: 'http:',
         slashes: true
       }));
-      win.webContents.openDevTools();
-    },1000);
+
+      // delay load prevent white screen
+      win.webContents.on("did-finish-load", () => {
+        win.webContents.openDevTools();
+        win.show();
+      });
+
+    },2000);
   } else {
     win.loadURL(url.format({
       pathname: path.join(path.resolve(__dirname, './dist'), 'index.html'),

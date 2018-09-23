@@ -9,6 +9,19 @@ import ScrollableInkTabBar from 'rc-tabs/lib/ScrollableInkTabBar';
 
 import styles from '../styles/HomePage.less';
 import '../styles/resizer.less';
+import MyTable from "./MyTable";
+import Counter from "./Counter";
+
+import {observable} from 'mobx';
+
+import { remote } from 'electron';
+
+const dialogOptions = {
+  type: 'info',
+  title: 'Information',
+  message: "This is an information dialog. Isn't it nice?",
+  buttons: ['Yes', 'No']
+};
 
 const sidePaneStyle = {
   background: '#262627'
@@ -23,10 +36,28 @@ var callback = function(key){
 }
 
 
+// seperate store
+const appState = observable({
+  count : 0
+})
+
+appState.increment = function() {
+  this.count++;
+}
+
+appState.decrement = function() {
+  this.count--;
+}
 
 
 class HomePage extends Component {
 
+  handleClick() {
+    console.log("test");
+    remote.dialog.showMessageBox(dialogOptions, (index) => {
+      console.log('information-dialog-selection', index);
+    });
+  }
 
   render() {
     return (
@@ -42,16 +73,19 @@ class HomePage extends Component {
                 <Link to='/todo'>todo....</Link>
               </div>
               <div>
-                <Tabs
-                  defaultActiveKey="2"
-                  onChange={callback}
-                  renderTabBar={()=><ScrollableInkTabBar />}
-                  renderTabContent={()=><TabContent />}
-                >
-                  <TabPane tab='tab 1' key="1">first</TabPane>
-                  <TabPane tab='tab 2' key="2">second</TabPane>
-                  <TabPane tab='tab 3' key="3">third</TabPane>
-                </Tabs>
+                <button onClick={this.handleClick}>test</button>
+                <Counter store={appState}/>
+
+                {/*<Tabs*/}
+                  {/*defaultActiveKey="2"*/}
+                  {/*onChange={callback}*/}
+                  {/*renderTabBar={()=><ScrollableInkTabBar />}*/}
+                  {/*renderTabContent={()=><TabContent />}*/}
+                {/*>*/}
+                  {/*<TabPane tab='tab 1' key="1">first</TabPane>*/}
+                  {/*<TabPane tab='tab 2' key="2">second</TabPane>*/}
+                  {/*<TabPane tab='tab 3' key="3">third</TabPane>*/}
+                {/*</Tabs>*/}
               </div>
             </SplitPane>
           </div>
