@@ -26,6 +26,7 @@
     "less": "^3.8.1",
     "less-loader": "^4.1.0",
     "rc-tabs": "^9.4.3",
+    "react-modal": "^3.5.1",
     "react-split-pane": "^0.1.84"
   },
   "devDependencies": {

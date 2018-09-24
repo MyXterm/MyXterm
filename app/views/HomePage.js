@@ -14,13 +14,26 @@ import Counter from "./Counter";
 
 import {observable} from 'mobx';
 
-import { remote } from 'electron';
+import { remote } from 'electron'; // electron remote (renderer-side) component
+
+import Modal from 'react-modal';
 
 const dialogOptions = {
   type: 'info',
   title: 'Information',
   message: "This is an information dialog. Isn't it nice?",
   buttons: ['Yes', 'No']
+};
+
+const customStyles = {
+  content : {
+    top                   : '50%',
+    left                  : '50%',
+    right                 : 'auto',
+    bottom                : 'auto',
+    marginRight           : '-50%',
+    transform             : 'translate(-50%, -50%)'
+  }
 };
 
 const sidePaneStyle = {
@@ -49,14 +62,33 @@ appState.decrement = function() {
   this.count--;
 }
 
+Modal.setAppElement('#root')
 
 class HomePage extends Component {
+  constructor () {
+    super();
+    this.state = {
+      showModal: false
+    };
+
+    this.handleOpenModal = this.handleOpenModal.bind(this);
+    this.handleCloseModal = this.handleCloseModal.bind(this);
+  }
+
 
   handleClick() {
     console.log("test");
     remote.dialog.showMessageBox(dialogOptions, (index) => {
       console.log('information-dialog-selection', index);
     });
+  }
+
+  handleOpenModal () {
+    this.setState({ showModal: true });
+  }
+
+  handleCloseModal () {
+    this.setState({ showModal: false });
   }
 
   render() {
@@ -75,6 +107,14 @@ class HomePage extends Component {
               <div>
                 <button onClick={this.handleClick}>test</button>
                 <Counter store={appState}/>
+
+                <button onClick={this.handleOpenModal}>Trigger Modal</button>
+                <Modal
+                  isOpen={this.state.showModal}
+                  contentLabel="Minimal Modal Example"
+                >
+                  <button onClick={this.handleCloseModal}>Close Modal</button>
+                </Modal>
 
                 {/*<Tabs*/}
                   {/*defaultActiveKey="2"*/}
