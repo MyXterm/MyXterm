@@ -12,7 +12,7 @@ var force_quit = false;
 const dialogOptions = {
   type: 'info',
   title: 'Information',
-  message: "This is an information dialog. Isn't it nice?",
+  message: "Are you sure to quit this application?",
   buttons: ['Yes', 'No']
 };
 

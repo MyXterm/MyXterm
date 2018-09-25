@@ -6,11 +6,9 @@ const todoList = [
   {id: 1, title: 'bbbbbbb', complete: true}
 ];
 
-
 function getTodoList() {
   return todoList;
 }
-
 
 function addTodo(item) {
   const todo = {
@@ -21,6 +19,7 @@ function addTodo(item) {
   todoList.push(todo);
   return todo;
 }
+
 function toggleTodo(index) {
   todoList[index].complete = !todoList[index].complete;
   return todoList[index];

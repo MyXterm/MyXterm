@@ -12,11 +12,13 @@ import '../styles/resizer.less';
 import MyTable from "./MyTable";
 import Counter from "./Counter";
 
-import {observable} from 'mobx';
+import {observable, autorun} from 'mobx';
 
 import { remote } from 'electron'; // electron remote (renderer-side) component
 
-import Modal from 'react-modal';
+//import Modal from 'react-modal';
+import NewEntryModal from "./NewEntryModal";
+import TodoPage from "./TodoPage";
 
 const dialogOptions = {
   type: 'info',
@@ -44,51 +46,13 @@ const logoPaneStyle = {
   background: '#222222'
 };
 
-var callback = function(key){
-  console.log(key);
-}
-
-
-// seperate store
-const appState = observable({
-  count : 0
-})
-
-appState.increment = function() {
-  this.count++;
-}
-
-appState.decrement = function() {
-  this.count--;
-}
-
-Modal.setAppElement('#root')
-
 class HomePage extends Component {
-  constructor () {
-    super();
-    this.state = {
-      showModal: false
-    };
-
-    this.handleOpenModal = this.handleOpenModal.bind(this);
-    this.handleCloseModal = this.handleCloseModal.bind(this);
-  }
-
 
   handleClick() {
     console.log("test");
     remote.dialog.showMessageBox(dialogOptions, (index) => {
       console.log('information-dialog-selection', index);
     });
-  }
-
-  handleOpenModal () {
-    this.setState({ showModal: true });
-  }
-
-  handleCloseModal () {
-    this.setState({ showModal: false });
   }
 
   render() {
@@ -106,15 +70,10 @@ class HomePage extends Component {
               </div>
               <div>
                 <button onClick={this.handleClick}>test</button>
-                <Counter store={appState}/>
 
-                <button onClick={this.handleOpenModal}>Trigger Modal</button>
-                <Modal
-                  isOpen={this.state.showModal}
-                  contentLabel="Minimal Modal Example"
-                >
-                  <button onClick={this.handleCloseModal}>Close Modal</button>
-                </Modal>
+                <Counter/>
+                <NewEntryModal/>
+                <TodoPage/>
 
                 {/*<Tabs*/}
                   {/*defaultActiveKey="2"*/}
