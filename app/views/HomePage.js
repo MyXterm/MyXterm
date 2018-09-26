@@ -2,10 +2,7 @@ import React, {PropTypes, Component} from 'react';
 import {Link} from 'react-router-dom';
 import SplitPane from 'react-split-pane';
 
-import 'rc-tabs/dist/rc-tabs.min.css';
-import Tabs, { TabPane } from 'rc-tabs';
-import TabContent from 'rc-tabs/lib/TabContent';
-import ScrollableInkTabBar from 'rc-tabs/lib/ScrollableInkTabBar';
+
 
 import styles from '../styles/HomePage.less';
 import '../styles/resizer.less';
@@ -19,6 +16,7 @@ import { remote } from 'electron'; // electron remote (renderer-side) component
 //import Modal from 'react-modal';
 import NewEntryModal from "./NewEntryModal";
 import TodoPage from "./TodoPage";
+import TabViews from "./TabViews";
 
 const dialogOptions = {
   type: 'info',
@@ -46,6 +44,8 @@ const logoPaneStyle = {
   background: '#222222'
 };
 
+
+
 class HomePage extends Component {
 
   handleClick() {
@@ -69,22 +69,10 @@ class HomePage extends Component {
                 <Link to='/todo'>todo....</Link>
               </div>
               <div>
-                <button onClick={this.handleClick}>test</button>
+                {/*<button onClick={this.handleClick}>test</button>*/}
 
-                <Counter/>
-                <NewEntryModal/>
-                <TodoPage/>
+                <TabViews/>
 
-                {/*<Tabs*/}
-                  {/*defaultActiveKey="2"*/}
-                  {/*onChange={callback}*/}
-                  {/*renderTabBar={()=><ScrollableInkTabBar />}*/}
-                  {/*renderTabContent={()=><TabContent />}*/}
-                {/*>*/}
-                  {/*<TabPane tab='tab 1' key="1">first</TabPane>*/}
-                  {/*<TabPane tab='tab 2' key="2">second</TabPane>*/}
-                  {/*<TabPane tab='tab 3' key="3">third</TabPane>*/}
-                {/*</Tabs>*/}
               </div>
             </SplitPane>
           </div>

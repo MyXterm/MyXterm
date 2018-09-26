@@ -8,6 +8,7 @@ import {Provider} from 'mobx-react';
 import TodoState from './stores/Todo';
 import CounterState from './stores/Counter';
 import ModalState from './stores/Modal';
+import TabsState from './stores/Tabs';
 
 import HomePage from './views/HomePage';
 import TodoPage from './views/TodoPage';
@@ -15,9 +16,10 @@ import TodoPage from './views/TodoPage';
 // Main store consists of multiple other stores, these stores will be injected
 // using @inject('storename'), eg @inject('modal') in component page
 const stores = {
-  todo: new TodoState(),
-  counter: new CounterState(),
-  modal: new ModalState()
+  todo    : new TodoState(),
+  counter : new CounterState(),
+  modal   : new ModalState(),
+  tabs    : new TabsState()
 };
 
 
