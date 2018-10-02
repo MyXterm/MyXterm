@@ -4,19 +4,13 @@ import SplitPane from 'react-split-pane';
 
 
 
-import styles from '../styles/HomePage.less';
+import '../styles/HomePage.less';
 import '../styles/resizer.less';
-import MyTable from "./MyTable";
-import Counter from "./Counter";
 
-import {observable, autorun} from 'mobx';
 
-import { remote } from 'electron'; // electron remote (renderer-side) component
-
-//import Modal from 'react-modal';
-import NewEntryModal from "./NewEntryModal";
-import TodoPage from "./TodoPage";
 import TabViews from "./TabViews";
+import XtermView from "./XtermView";
+import Term from "./Term";
 
 const dialogOptions = {
   type: 'info',
@@ -44,16 +38,14 @@ const logoPaneStyle = {
   background: '#222222'
 };
 
-
-
 class HomePage extends Component {
 
-  handleClick() {
-    console.log("test");
-    remote.dialog.showMessageBox(dialogOptions, (index) => {
-      console.log('information-dialog-selection', index);
-    });
-  }
+
+
+  // This will create a new ref_ function for every render,
+  // which is inefficient. Should maybe do something similar
+  // to this.bind.
+
 
   render() {
     return (
@@ -71,7 +63,10 @@ class HomePage extends Component {
               <div>
                 {/*<button onClick={this.handleClick}>test</button>*/}
 
+
                 <TabViews/>
+
+
 
               </div>
             </SplitPane>

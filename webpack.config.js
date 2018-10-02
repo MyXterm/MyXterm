@@ -38,7 +38,8 @@ module.exports = {
         }, {
           loader: 'less-loader' // compiles Less to CSS
         }]
-      }
+      },
+      { test: /node_modules.+xterm.+\.map$/, loader: 'ignore-loader' }
     ]
   },
 
