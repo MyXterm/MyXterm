@@ -25,6 +25,8 @@
   "dependencies": {
     "bufferutil": "^4.0.0",
     "chai": "^4.2.0",
+    "dragula": "^3.7.2",
+    "electron-tabs": "^0.9.4",
     "express-ws": "^4.0.0",
     "ignore-loader": "^0.1.2",
     "less": "^3.8.1",
@@ -39,7 +41,8 @@
     "react-xterm": "^2.0.4",
     "styled-jsx": "^3.1.0",
     "utf-8-validate": "^5.0.1",
-    "xterm": "^3.7.0"
+    "xterm": "^3.7.0",
+    "prop-types": "latest"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",

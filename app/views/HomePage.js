@@ -7,10 +7,10 @@ import SplitPane from 'react-split-pane';
 import '../styles/HomePage.less';
 import '../styles/resizer.less';
 
-
-import TabViews from "./TabViews";
-import XtermView from "./XtermView";
-import Term from "./Term";
+import Tabs from './Tabs';
+// import TabViews from "./TabViews";
+// import XtermView from "./XtermView";
+// import Term from "./Term";
 
 const dialogOptions = {
   type: 'info',
@@ -64,7 +64,19 @@ class HomePage extends Component {
                 {/*<button onClick={this.handleClick}>test</button>*/}
 
 
-                <TabViews/>
+                {/*<TabViews/>*/}
+
+                <Tabs>
+                  <div label="Gator">
+                    See ya later, <em>Alligator</em>!
+                  </div>
+                  <div label="Croc">
+                    After 'while, <em>Crocodile</em>!
+                  </div>
+                  <div label="Sarcosuchus">
+                    Nothing to see here, this tab is <em>extinct</em>!
+                  </div>
+                </Tabs>
 
 
 
